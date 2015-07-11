@@ -1,0 +1,59 @@
+---
+title: "Warnings of ASH"
+author: "Lei Sun"
+date: "July 10, 2015"
+output: pdf_document
+---
+
+When investigating the null behavior of ASH, we found ASH usually generates 6-7 warnings out of 100 runs - each run consists of three ASH functions, namely ASH applied to $\hat\beta_1$, $\hat\beta_2$ jointly and separately.  Most of the warnings are due to EM not converging.  This mini-project is to investigate how and when it happens.
+
+The code for an $M$-run simulation is as follows.
+
+```{r eval=FALSE}
+library(ashr)
+
+t<-c()
+
+M<-1
+
+for (i in 1:M){
+  beta1<-rnorm(1000,0,1)
+	beta2<-rnorm(1000,0,1)
+	s<-rep(1,1000)
+	betahat1<-rnorm(1000,beta1,s)
+	betahat2<-rnorm(1000,beta2,s)
+	
+	r12<-ash(c(betahat1,betahat2),c(s,s),mixcompdist="normal",method="shrink")
+	r1<-ash(betahat1,s,mixcompdist="normal",method="shrink")
+	r2<-ash(betahat2,s,mixcompdist="normal",method="shrink")
+	
+	t<-c(t,2*(r1$loglik+r2$loglik-r12$loglik))
+}
+```
+
+That is, we generate $\beta_1$, $\beta_2\sim N\left(0,1\right)$, set $\hat s=1$ for both groups, $\hat\beta_1\sim N\left(\beta_1,\hat s=1\right)$, $\hat\beta_2\sim N\left(\beta_2,\hat s=1\right)$.  Let Group 1 $=\left(\hat\beta_1,s=1\right)$, Group 2 $=\left(\hat\beta_2,s=1\right)$.
+
+Now we do a $200$-run simulation, and use \texttt{tryCatch} to record the detailed warning messages: each time ASH generates a warning, \texttt{tryCatch} record the corresponding $\hat\beta_1$ and/or $\hat\beta_2$.  We've recorded $12$ verified "malign" data sets which generate EM not coverging warnings and plot them as follows.
+
+```{r echo=FALSE}
+setwd("~/Dropbox/Projects/ash_warnings/data")
+for (i in c(1:9,11:13)){
+  f<-paste("betahat_",i,".txt",sep="")
+  plot(density(scan(f)),main=paste("betahat_",i,sep=""))
+}
+```
+
+They don't seem very suspicious, but they tend to be non-unimodal, non-symmetric, and/or non-zero-mode.  Of them, the third data set is of particular interest.  This data set consists of Group 1 and Group 2.  That is, the warning happens when we feed both groups to ASH jointly, but not when we feed them separately.  Now we plot the density of the joint data set and the separate data sets separately.
+
+```{r echo=FALSE}
+setwd("/Users/LSun/Dropbox/Projects/ash_warnings/data")
+par(mfrow=c(1,3))
+betahat_3<-scan("betahat_3.txt")
+plot(density(betahat_3),main="betahat_3")
+betahat_3<-scan("betahat_3_1.txt")
+plot(density(betahat_3),main="betahat_3_1")
+betahat_3<-scan("betahat_3_2.txt")
+plot(density(betahat_3),main="betahat_3_2")
+```
+
+We can see that Group 2 seems more malign yet EM works with it fine.  It seems that compared with non-unimodal, non-symmetry is more likely to make EM not converge.

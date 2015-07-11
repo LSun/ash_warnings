@@ -1,0 +1,525 @@
+r2
+max(density(beta1))
+max(density(beta1),density(betahat1))
+M<-sample(1000:2000,1)#
+N<-sample(1000:2000,1)#
+K<-sample(1:10,1)#
+pi<-as.numeric(rdirichlet(1,rep(1,K)))#
+sigma0<-runif(K,exp(-2),exp(3))#
+beta1<-betagen(M,sigma0,0,pi)#
+beta2<-betagen(N,sigma0,0,pi)#
+n1<-sample(10:30,M,replace=TRUE)#
+n2<-sample(10:30,N,replace=TRUE)#
+I1<-runif(M,0,1)#
+I2<-runif(N,0,1)#
+kappa1<-qnorm((I1<=0.33)*runif(M,0.5,0.75)+(I1>0.33)*runif(M,0.75,1))#
+kappa2<-qnorm((I2<=0.33)*runif(N,0.5,0.75)+(I2>0.33)*runif(N,0.75,1))#
+shat1<-abs(beta1/kappa1)#
+shat2<-abs(beta2/kappa2)#
+betahat1<-rnorm(M,beta1,shat1)#
+betahat2<-rnorm(N,beta2,shat2)#
+#
+plot(density(betahat1),lty=3)#
+lines(density(betahat2),col="red",lty=3)#
+lines(density(beta1))#
+lines(density(beta2),col="red")
+install.packages("gtools")#
+library(gtools)
+M<-sample(1000:2000,1)#
+N<-sample(1000:2000,1)#
+K<-sample(1:10,1)#
+pi<-as.numeric(rdirichlet(1,rep(1,K)))#
+sigma0<-runif(K,exp(-2),exp(3))#
+beta1<-betagen(M,sigma0,0,pi)#
+beta2<-betagen(N,sigma0,0,pi)#
+n1<-sample(10:30,M,replace=TRUE)#
+n2<-sample(10:30,N,replace=TRUE)#
+I1<-runif(M,0,1)#
+I2<-runif(N,0,1)#
+kappa1<-qnorm((I1<=0.33)*runif(M,0.5,0.75)+(I1>0.33)*runif(M,0.75,1))#
+kappa2<-qnorm((I2<=0.33)*runif(N,0.5,0.75)+(I2>0.33)*runif(N,0.75,1))#
+shat1<-abs(beta1/kappa1)#
+shat2<-abs(beta2/kappa2)#
+betahat1<-rnorm(M,beta1,shat1)#
+betahat2<-rnorm(N,beta2,shat2)#
+#
+r3<-ash(c(betahat1,betahat2),c(shat1,shat2),mixcompdist="normal",method="shrink")#
+r1<-ash(betahat1,shat1,mixcompdist="normal",method="shrink")#
+r2<-ash(betahat2,shat2,mixcompdist="normal",method="shrink")
+library(gtools)#
+library(ashr)
+n<-rep(30,M)#
+kappa<-runif(M,0.5,2)#
+sigma<-abs(beta1*sqrt(n)/kappa)#
+group1<-betahatgen(beta1,sigma,n)#
+betahat1<-group1[[1]]#
+shat1<-group1[[2]]#
+group2<-betahatgen(beta1,sigma,n)#
+betahat2<-group2[[1]]#
+shat2<-group2[[2]]#
+#
+r1<-ash(betahat1,shat1,mixcompdist="normal",method="shrink")#
+r2<-ash(betahat2,shat2,mixcompdist="normal",method="shrink")#
+r3<-ash(c(betahat1,betahat2),c(shat1,shat2),mixcompdist="normal",method="shrink")#
+t[j]<-r1$loglik+r2$loglik-r3$loglik#
+}#
+t<-rep(0,10000)#
+for (i in 1:1000){#
+M<-sample(1000:2000,1)#
+N<-sample(1000:2000,1)#
+K<-sample(1:10,1)#
+pi<-as.numeric(rdirichlet(1,rep(1,K)))#
+sigma0<-runif(K,exp(-2),exp(3))#
+beta1<-betagen(M,sigma0,0,pi)#
+beta2<-betagen(N,sigma0,0,pi)#
+n1<-sample(10:30,M,replace=TRUE)#
+n2<-sample(10:30,N,replace=TRUE)#
+I1<-runif(M,0,1)#
+I2<-runif(N,0,1)#
+kappa1<-qnorm((I1<=0.33)*runif(M,0.5,0.75)+(I1>0.33)*runif(M,0.75,1))#
+kappa2<-qnorm((I2<=0.33)*runif(N,0.5,0.75)+(I2>0.33)*runif(N,0.75,1))#
+shat1<-abs(beta1/kappa1)#
+shat2<-abs(beta2/kappa2)#
+betahat1<-rnorm(M,beta1,shat1)#
+betahat2<-rnorm(N,beta2,shat2)#
+#
+r3<-ash(c(betahat1,betahat2),c(shat1,shat2),mixcompdist="normal",method="shrink")#
+r1<-ash(betahat1,shat1,mixcompdist="normal",method="shrink")#
+r2<-ash(betahat2,shat2,mixcompdist="normal",method="shrink")
+dasfa
+sadf
+asd
+fas
+dfas
+df
+asdf
+as
+fd
+asdf
+as
+das
+df
+sadf
+sa
+df
+asdf
+as
+fdsa
+fd
+as
+df
+qnorm(0.75)
+qnorm(1)
+qnorm(0.9)
+t1<-rgamma(1000,1,1)
+plot(density(t1))
+t2<-rgamma(1000,5,5)
+lines(density(t2),col="red")
+sd(t1)
+sd(t2)
+exp(0.2)
+exp(0.4)
+?rexp
+rexp(1000,2)
+t1<-rexp(1000,2)
+t2<-rexp(1000,1)
+plot(density(t1))
+lines(density(t2),col="red")
+plot(density(t1),xlab=c(0,max(c(t1,t2)))
+)
+plot(density(t1),xlim=c(0,max(c(t1,t2)))
+)
+cdf1<-ecdf(t1)
+plot(cdf1)
+lines(cdf2,col="red")
+cdf2<-ecdf(t2)
+lines(cdf2,col="red")
+beta1<-rnorm(1000,0,1)#
+beta2<-rnorm(1000,0,1)#
+s<-rep(1,1000)#
+betahat1<-rnorm(1000,beta1,s)#
+betahat2<-rnorm(1000,beta2,s)
+library(ashr)
+t1<-ash(betahat1,s,"normal","shrink")
+r1<-ash(betahat1,s,mixcompdist="normal",method="shrink")
+r1
+r1$fitted.g
+r1$loglik
+library(ashr)#
+#
+beta1<-rnorm(1000,0,1)#
+beta2<-rnorm(1000,0,1)#
+s<-rep(1,1000)#
+betahat1<-rnorm(1000,beta1,s)#
+betahat2<-rnorm(1000,beta2,s)#
+#
+r12<-ash(c(betahat1,betahat2),c(shat1,shat2),mixcompdist="normal",method="shrink")#
+r1<-ash(betahat1,shat1,mixcompdist="normal",method="shrink")#
+r2<-ash(betahat2,shat2,mixcompdist="normal",method="shrink")#
+#
+2*(r1$loglik+r2$loglik-r3$loglik)
+library(ashr)#
+#
+beta1<-rnorm(1000,0,1)#
+beta2<-rnorm(1000,0,1)#
+s<-rep(1,1000)#
+betahat1<-rnorm(1000,beta1,s)#
+betahat2<-rnorm(1000,beta2,s)#
+#
+r12<-ash(c(betahat1,betahat2),c(s,s),mixcompdist="normal",method="shrink")#
+r1<-ash(betahat1,s,mixcompdist="normal",method="shrink")#
+r2<-ash(betahat2,s,mixcompdist="normal",method="shrink")#
+#
+2*(r1$loglik+r2$loglik-r12$loglik)
+library(ashr)#
+#
+t<-c()#
+#
+for (i in 1:10000){#
+	beta1<-rnorm(1000,0,1)#
+	beta2<-rnorm(1000,0,1)#
+	s<-rep(1,1000)#
+	betahat1<-rnorm(1000,beta1,s)#
+	betahat2<-rnorm(1000,beta2,s)#
+	r12<-ash(c(betahat1,betahat2),c(s,s),mixcompdist="normal",method="shrink")#
+	r1<-ash(betahat1,s,mixcompdist="normal",method="shrink")#
+	r2<-ash(betahat2,s,mixcompdist="normal",method="shrink")#
+	t<-c(t,2*(r1$loglik+r2$loglik-r12$loglik))#
+}
+warnings()
+summary(t)
+sum(t<=0)
+length(t)
+hist(t)
+t1<-t[which(t>=0)]
+length(t1)
+mean(t1)
+plot(density(t1))
+hist(t1)
+hist(t1,prob=TRUE)
+lines(seq(0,15,length=10000),dchisq(seq(0,15,length=10000),mean(t1)),col="red")
+png()
+hist(t1,prob=TRUE,xlim=c(0,10))
+lines(seq(0,15,length=10000),dchisq(seq(0,15,length=10000),mean(t1)),col="red")
+dev.off()
+write.table(t,"~/Desktop/t.txt",quote=FALSE,row.names=FALSE,col.names=FALSE)
+t2<-max(t,0)
+length(t2)
+t2<-pmax(t,0)
+length(t12)
+length(t2)
+hist(t1,prob=TRUE)#
+lines(seq(0,10,length=10000),dchisq(seq(0,10,length=10000),mean(t1)),col="red")
+plot(seq(0,10,length=10000),dchisq(seq(0,10,length=10000),mean(t1)),col="red",type="l")
+hist(t1,prob=TRUE)#
+lines(seq(0,10,length=10000),dchisq(seq(0,10,length=10000),2),col="red")
+png("~/Desktop/t2.png")
+hist(t1,prob=TRUE)#
+lines(seq(0,10,length=10000),dchisq(seq(0,10,length=10000),mean(t1)),col="red")
+dev.off()
+png("~/Desktop/t2.png")
+hist(t1,prob=TRUE,xlim=c(0,10))#
+lines(seq(0,10,length=10000),dchisq(seq(0,10,length=10000),mean(t1)),col="red")
+dev.off()
+t<-read.table(~/Desktop/t.txt)
+t<-read.table("~/Desktop/t.txt")
+sum(t<=0)
+sum(t==0)
+t1<-t[which(t>=0)]
+t
+t<-as.vector(as.numeric(t))
+t<-scan("~/Desktop/t.txt")
+length(t)
+head(t)
+t1<-t[which(t>=0)]
+length(t1)
+mean(t1)
+t<-scan("~/Desktop/Covariate ASH/t.txt")
+sum(t<=0)
+length(t)
+t1<-t[which(t>=0)]
+mean(t1)
+1000-76
+library(ashr)#
+#
+t<-c()#
+#
+for (i in 1:100){#
+	beta1<-rnorm(1000,0,1)#
+	beta2<-rnorm(1000,0,1)#
+	s<-rep(1,1000)#
+	betahat1<-rnorm(1000,beta1,s)#
+	betahat2<-rnorm(1000,beta2,s)#
+	r12<-ash(c(betahat1,betahat2),c(s,s),mixcompdist="normal",method="shrink")#
+	r1<-ash(betahat1,s,mixcompdist="normal",method="shrink")#
+	r2<-ash(betahat2,s,mixcompdist="normal",method="shrink")#
+	t<-c(t,2*(r1$loglik+r2$loglik-r12$loglik))#
+}
+library(ashr)#
+#
+t<-c()#
+#
+for (i in 1:1000){#
+	beta1<-rnorm(1000,0,1)#
+	beta2<-rnorm(1000,0,1)#
+	s<-rep(1,1000)#
+	betahat1<-rnorm(1000,beta1,s)#
+	betahat2<-rnorm(1000,beta2,s)#
+	r12<-ash(c(betahat1,betahat2),c(s,s),mixcompdist="normal",method="shrink")#
+	r1<-ash(betahat1,s,mixcompdist="normal",method="shrink")#
+	r2<-ash(betahat2,s,mixcompdist="normal",method="shrink")#
+	t<-c(t,2*(r1$loglik+r2$loglik-r12$loglik))#
+}
+warnings()
+fw = file("warnings.txt", open="wt")#
+sink(fw, type='message')#
+options(warn=1)
+warnings()
+fw = file("warnings.txt", open="wt")#
+sink(fw, type='message')#
+option(warn=1)
+fw = file("warnings.txt", open="wt")#
+sink(fw, type='message')#
+options(warn=1)
+?sink
+sum(t<0)
+length(t)
+hist(t)
+mean(t)
+mean(t[which(t>=0)])
+hist(t,prob=TRUE)
+lines(seq(0,100,length=1000),dchisq(seq(0,100,length=1000),mean(t)),col="red")
+hist(t,prob=TRUE,ylim=c(0,dchisq(seq(0,100,length=1000),mean(t))))
+hist(t,prob=TRUE,ylim=c(0,dchisq(seq(0,100,length=1000),mean(t))),prob=TRUE)
+lines(seq(0,100,length=1000),dchisq(seq(0,100,length=1000),mean(t)),col="red")
+hist(t,prob=TRUE,ylim=c(0,dchisq(seq(0,100,length=1000),mean(t))),prob=TRUE)
+hist(t,prob=TRUE,ylim=c(0,max(dchisq(seq(0,100,length=1000),mean(t)))))
+hist(t,prob=TRUE,ylim=c(0,dchisq(seq(0,10,length=1000),mean(t))),prob=TRUE)
+hist(t,prob=TRUE,ylim=c(0,dchisq(seq(0,10,length=1000),mean(t))))
+hist(t,prob=TRUE,ylim=c(0,max(dchisq(seq(0,10,length=1000),mean(t)))))
+hist(t,prob=TRUE)
+x<-seq(0,10,length=1000)
+y<-dchisq(seq(0,100,length=1000),mean(t))
+max(y)
+y<-dchisq(seq(0,10,length=1000),mean(t))
+seq.int(0,1,length=10)
+x<-x[-1]
+head(x)
+y<-dchisq(x,mean(t))
+max(y)
+t1<-t[which(t>=0)]
+y1<-dchisq(x,mean(t1))
+hist(t,prob=TRUE,ylim=c(0,max(y)))
+lines(x,y,col="red")
+hist(t,prob=TRUE,ylim=c(0,max(y1)))
+lines(x,y1,col="red")
+t2<-pmax(t,0)
+length(t2)
+min(t2)
+hist(t2,prob=TRUE)
+lines(x,y1,col="red")
+lines(x,y,col="blue")
+fw = file("warnings.txt", open="wt")#
+sink(fw, type='message')#
+options(warn=1)#
+library(ashr)#
+#
+t<-c()#
+#
+for (i in 1:10){#
+	beta1<-rnorm(1000,0,1)#
+	beta2<-rnorm(1000,0,1)#
+	s<-rep(1,1000)#
+	betahat1<-rnorm(1000,beta1,s)#
+	betahat2<-rnorm(1000,beta2,s)#
+	r12<-ash(c(betahat1,betahat2),c(s,s),mixcompdist="normal",method="shrink")#
+	r1<-ash(betahat1,s,mixcompdist="normal",method="shrink")#
+	r2<-ash(betahat2,s,mixcompdist="normal",method="shrink")#
+	t<-c(t,2*(r1$loglik+r2$loglik-r12$loglik))#
+}
+fw = file("warnings.txt", open="wt")#
+sink(fw, type='message')#
+options(warn=1)#
+library(ashr)#
+#
+t<-c()#
+#
+for (i in 1:100){#
+	beta1<-rnorm(1000,0,1)#
+	beta2<-rnorm(1000,0,1)#
+	s<-rep(1,1000)#
+	betahat1<-rnorm(1000,beta1,s)#
+	betahat2<-rnorm(1000,beta2,s)#
+	r12<-ash(c(betahat1,betahat2),c(s,s),mixcompdist="normal",method="shrink")#
+	r1<-ash(betahat1,s,mixcompdist="normal",method="shrink")#
+	r2<-ash(betahat2,s,mixcompdist="normal",method="shrink")#
+	t<-c(t,2*(r1$loglik+r2$loglik-r12$loglik))#
+}
+1/0.937
+1/1.278
+5.15/12.49
+4.44/11.13
+?ashr
+?ash
+library(ashr)
+?ash.workhorse
+z1 = rnorm(1000)
+z2 = rnorm(1000)
+z1.ash=ash(z1,1,method="shrink")
+z2.ash = ash(z2,1,method="shrink",g=z1.ash$fitted.g)
+z2.ash
+z1.ash
+betahat2<-scan("~/Desktop/betahat2.rtf")
+betahat1<-scan("~/Desktop/betahat1.rtf")
+betahat1<-scan("~/Desktop/betaha1.rtf")
+betahat1<-scan("~/Desktop/betahat1.rtf")
+betahat1<-read.table("~/Desktop/betahat1.rtf")
+betahat1<-scan("~/Desktop/betahat1.rtf")
+betahat1<-scan("~/Desktop/betahat1")
+betahat1<-scan("~/Desktop/betahat1.rtf")
+betahat1<-scan("~/Desktop/betahat1")
+betahat1<-scan("~/Desktop/betahat1.txt")
+betahat2<-scan("~/Desktop/betahat2.txt")
+diff(betahat1,betahat2)
+length(betahat1)
+length(betahat2)
+betahat1-betahat2
+plot(density(betahat1))
+lines(density(betahat2),col="red")
+library(ashr)
+g1.ash<-ash(betahat1,1,mixcompdist="normal",method="shrink")
+g2.ash<-ash(betahat2,1,mixcompdist="normal",method="shrink")
+lines(density(c(betahat1,betahat2)),col="blue")
+g12.ash<-ash(c(betahat1,betahat2),1,mixcompdist="normal",method="shrink")
+g12.ash$loglik
+g1.ash$loglik+g2.ash$loglik-g12.ash$loglik
+plot(density(betahat1))lines(density(betahat2),col="red")
+plot(density(betahat1),main="",xlab="")
+lines(density(betahat2),col="red")
+lines(density(c(betahat1,betahat2)),col="blue")
+legend("topright",col=c("black","red","blue"),lty=1,c(expression(beta[1]),expression(beta[2]),expression(beta[1]+beta[2])))
+png("~/Desktop/notconverg.png")
+plot(density(betahat1),main="",xlab="")
+lines(density(betahat2),col="red")
+lines(density(c(betahat1,betahat2)),col="blue")
+legend("topright",col=c("black","red","blue"),lty=1,c(expression(beta[1]),expression(beta[2]),expression(beta[1]+beta[2])))
+dev.off()
+library(ashr)
+sink(file('./null_standard_normal_simulation.log', open = 'wt'), type = 'message')#
+options(warn=1)#
+#
+t<-c()#
+#
+N<-200#
+for (i in 1:N) {#
+	beta1<-rnorm(1000,0,1)#
+	beta2<-rnorm(1000,0,1)#
+	s<-rep(1,1000)#
+	betahat1<-rnorm(1000,beta1,s)#
+	betahat2<-rnorm(1000,beta2,s)#
+	r12<-ash(c(betahat1,betahat2),c(s,s),mixcompdist="normal",method="shrink")#
+	r1<-ash(betahat1,s,mixcompdist="normal",method="shrink")#
+	r2<-ash(betahat2,s,mixcompdist="normal",method="shrink")#
+	t<-c(t,2*(r1$loglik+r2$loglik-r12$loglik))#
+   tryCatch(#
+   {#
+       r12<-ash(c(betahat1,betahat2),c(s,s),mixcompdist="normal",method="shrink")#
+   }, warning = function(w) {#
+	message(paste('ash12-',i,'\n'))#
+       message(paste('betahat1 is', betahat1, '\n'))#
+       message(paste('betahat2 is', betahat2, '\n'))#
+       message(paste('message is', w, '\n'))#
+   }, error = function(e) {#
+	message('Error here')#
+}#
+   )#
+   tryCatch(#
+   {#
+	r1<-ash(betahat1,s,mixcompdist="normal",method="shrink")#
+   }, warning = function(w) {#
+	message(paste('ash1-',i,'\n'))#
+       message(paste('betahat1 is', betahat1, '\n'))#
+       message(paste('message is', w, '\n'))#
+   }, error = function(e) {#
+	message('Error here')#
+}#
+   )#
+   tryCatch(#
+   {#
+	r2<-ash(betahat2,s,mixcompdist="normal",method="shrink")#
+   }, warning = function(w) {#
+	message(paste('ash2-',i,'\n'))#
+       message(paste('betahat2 is', betahat2, '\n'))#
+       message(paste('message is', w, '\n'))#
+   }, error = function(e) {#
+	message('Error here')#
+}#
+   )#
+}
+getwd
+getwd()
+betahat_1<-scan("~/Desktop/betahat_1.txt")
+length(betahat_1)
+plot(density(betahat_1))
+betahat_2<-scan("~/Desktop/betahat_2.txt")
+plot(density(betahat_1))
+plot(density(betahat_2))
+betahat_3<-scan("~/Desktop/betahat_3.txt")
+plot(density(betahat_3))
+betahat_31<-scan("~/Desktop/betahat_31.txt")
+betahat_32<-scan("~/Desktop/betahat_32.txt")
+plot(density(betahat_31))
+plot(density(betahat_32))
+ash(betahat_31,1,mixcompdist="normal",method="shrink")
+ash(betahat_32,1,mixcompdist="normal",method="shrink")
+ash(betahat_3,1,mixcompdist="normal",method="shrink")
+ash(betahat_31,1,mixcompdist="normal",method="shrink")
+ash(betahat_32,1,mixcompdist="normal",method="shrink")
+ash(betahat_3,1,mixcompdist="normal",method="shrink")
+getwd
+getwd()
+setwd(~/Desktop/Dropbox/Projects/ash_warnings/data)
+setwd("~/Desktop/Dropbox/Projects/ash_warnings/data")
+setwd("~/Dropbox/Projects/ash_warnings/data")
+betahat_3<-scan("betahat_3.txt")
+plot(density(betahat_3))
+plot(density(betahat_3),main="betahat_3")
+par(mfrow=c(1,3))#
+betahat_3<-scan("betahat_3.txt")#
+plot(density(betahat_3),main="betahat_3")#
+betahat_3<-scan("betahat_3_1.txt")#
+plot(density(betahat_3),main="betahat_3_1")#
+betahat_3<-scan("betahat_3_2.txt")#
+plot(density(betahat_3),main="betahat_3_2")
+par(mfrow=c(1,3))#
+betahat_8<-scan("betahat_8.txt")#
+plot(density(betahat_3),main="betahat_8")#
+betahat_8<-scan("betahat_8_1.txt")#
+plot(density(betahat_3),main="betahat_8_1")#
+betahat_8<-scan("betahat_8_2.txt")#
+plot(density(betahat_3),main="betahat_8_2")
+par(mfrow=c(1,3))#
+betahat_12<-scan("betahat_12.txt")#
+plot(density(betahat_3),main="betahat_12")#
+betahat_12<-scan("betahat_12_1.txt")#
+plot(density(betahat_3),main="betahat_12_1")#
+betahat_12<-scan("betahat_12_2.txt")#
+plot(density(betahat_3),main="betahat_12_2")
+par(mfrow=c(1,3))#
+betahat_13<-scan("betahat_13.txt")#
+plot(density(betahat_3),main="betahat_13")#
+betahat_13<-scan("betahat_13_1.txt")#
+plot(density(betahat_3),main="betahat_13_1")#
+betahat_13<-scan("betahat_13_2.txt")#
+plot(density(betahat_3),main="betahat_13_2")
+getwd()
+png("peculiar.png")
+setwd("/Users/LSun/Dropbox/Projects/ash_warnings/data")#
+par(mfrow=c(1,3))#
+betahat_3<-scan("betahat_3.txt")#
+plot(density(betahat_3),main="betahat_3")#
+betahat_3<-scan("betahat_3_1.txt")#
+plot(density(betahat_3),main="betahat_3_1")#
+betahat_3<-scan("betahat_3_2.txt")#
+plot(density(betahat_3),main="betahat_3_2")
+dev.off()

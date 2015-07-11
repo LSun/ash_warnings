@@ -1,0 +1,8 @@
+---
+title: "ReadMe"
+author: "Lei Sun"
+date: "July 10, 2015"
+output: html_document
+---
+
+A mini project to investigate when and how ASH generates "EM not converge" warnings.
